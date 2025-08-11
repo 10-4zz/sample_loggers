@@ -28,6 +28,7 @@ logger = logger_controller.create_logger(
 
 
 ## Update
+- 0.0.1 - Fix the bug.
 - 0.0.1 - We provide the common config for logging to create logger.
 
 ## License

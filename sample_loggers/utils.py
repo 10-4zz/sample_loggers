@@ -3,14 +3,11 @@ from copy import deepcopy
 from typing import Any
 import time
 
-import thop
-
 try:
     import torch
+    import thop
 except:
-    raise ImportError("Please install torch package to use this module, "
-                      "or you set a value to the virtual_input."
-                      "eg. torch.empty((1, 3, 224, 224), device=device)")
+    raise ImportError("Please install torch and thop package to use this module.")
 
 
 def summery_model(

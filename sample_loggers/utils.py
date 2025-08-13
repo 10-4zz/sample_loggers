@@ -13,7 +13,7 @@ except ImportError:
 
 
 def summery_model(
-    model: torch.nn.Module,
+    model: 'torch.nn.Module',
     logger: logging.Logger,
     input_virtual: Any = None,
     image_size: int = 224,
@@ -79,8 +79,8 @@ def summery_model(
 
 @torch.no_grad()
 def throughput(
-        data_loader: torch.utils.data.DataLoader,
-        model: torch.nn.Module,
+        data_loader: 'torch.utils.data.DataLoader',
+        model: 'torch.nn.Module',
         logger: logging.Logger,
 ):
     """

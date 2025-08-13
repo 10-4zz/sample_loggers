@@ -38,6 +38,7 @@ logger = create_logger(
 ```
 
 ## Update
+- 0.0.4post1 - Fix the bug.
 - 0.0.4 - Samplify thr method to create logger and provide the default logger that can be used directly.
 - 0.0.3post1 - Fix the bug.
 - 0.0.3 - Add the level definition.

@@ -15,6 +15,7 @@ license = {text = "MIT"}
 
 dependencies = [
     'termcolor',
+    'yacs',
 ]
 dynamic = ["version"]
 

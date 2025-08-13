@@ -15,7 +15,7 @@ To ues the logger directly, you can use the `logger` object provided by the pack
 ```python
 from sample_loggers import logger
 
-logger.info("hello world!")
+logger.info("hello world")
 ```
 
 To define your own logger, you can use the `create_logger` method. This method allows you to specify the name of the logger and the log level.

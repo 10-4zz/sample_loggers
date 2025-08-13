@@ -6,8 +6,10 @@ import time
 try:
     import torch
     import thop
-except:
-    raise ImportError("Please install torch and thop package to use this module.")
+    
+    TORCH_THOP_AVAILABLE = True
+except ImportError:
+    TORCH_THOP_AVAILABLE = False
 
 
 def summery_model(
@@ -29,6 +31,9 @@ def summery_model(
         unit_macs (str, optional): Unit for MACs ('K', 'M', 'G'). Defaults to 'M'.
         unit_flops (str, optional): Unit for FLOPs ('K', 'M', 'G'). Defaults to 'M'.
     """
+    if not TORCH_THOP_AVAILABLE:
+        raise ImportError("Please install torch and thop packages to use the summery_model function.")
+    
     n_parameters = sum(p.numel() for p in model.parameters() if p.requires_grad)
     if unit_param == "K":
         n_parameters /= 1e3
@@ -84,6 +89,8 @@ def throughput(
         model (torch.nn.Module): The model to evaluate throughput.
         logger (logging.Logger): Logger to log the throughput.
     """
+    if not TORCH_THOP_AVAILABLE:
+        raise ImportError("Please install the torch package to use the throughput function.")
     model.eval()
 
     for _, (images, _) in enumerate(data_loader):

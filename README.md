@@ -11,23 +11,34 @@ pip install sample_loggers
 ```
 
 ## Example for using
-
+To ues the logger directly, you can use the `logger` object provided by the package. 
 ```python
-import os
-import logging
-from loggers import LoggerController
+from sample_loggers import logger
 
-os.makedirs('./output', exist_ok=True)
-logger_controller = LoggerController(log_file_name="log.txt" ,output_dir=config.OUTPUT)
-logger = logger_controller.create_logger(
-    logger_name='food_classification',
-    log_level=logging.DEBUG,
-    format_type="default"
+logger.info("hello world!")
+```
+
+To define your own logger, you can use the `create_logger` method. This method allows you to specify the name of the logger and the log level.
+```python
+from sample_loggers import create_logger, LEVEL
+
+# The format can be defined as a string, 
+# you can refer to the official website 
+# https://docs.python.org/3/library/logging.html#logrecord-attributes.
+define_format = "Define your own format here, you can use the default format or define your own format."
+
+logger = create_logger(
+    logger_name="logger",
+    log_level=LEVEL.INFO,
+    log_file_name="log.txt",
+    output_dir="./output/log",
+    format_type="default",
+    define_format=define_format
 )
 ```
 
-
 ## Update
+- 0.0.4 - Samplify thr method to create logger and provide the default logger that can be used directly.
 - 0.0.3post1 - Fix the bug.
 - 0.0.3 - Add the level definition.
 - 0.0.2post2 - Fix the bug.

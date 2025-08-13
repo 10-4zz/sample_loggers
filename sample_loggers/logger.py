@@ -64,3 +64,37 @@ class LoggerController:
 
         return logger
 
+
+def create_logger(
+        logger_name: str = '__name__',
+        log_level: int = logging.INFO,
+        log_file_name: str = "log.txt",
+        output_dir: str = "./output/log",
+        format_type: str = "default",
+        define_format: str = None
+) -> logging.Logger:
+    """
+    Create a logger instance with the specified name.
+            Args:
+                log_file_name (str): The name of the log file. Default is "log.txt".
+                output_dir (str): The directory to save the log file. Default is "./output".
+                logger_name (str): The name of the logger. Default is '__name__'.
+                log_level (int): The logging level. Default is logging.INFO.
+                define_format (str): A custom format string for the logger. Default is None.
+                format_type (str): The format type for the logger. Default is 'default'.
+            Returns:
+                logging.Logger: The logger instance.
+    """
+    os.makedirs(output_dir, exist_ok=True)
+    logger_controller = LoggerController(
+        log_file_name=log_file_name,
+        output_dir=output_dir,
+    )
+
+    return logger_controller.create_logger(
+        logger_name=logger_name,
+        log_level=log_level,
+        define_format=define_format,
+        format_type=format_type
+    )
+

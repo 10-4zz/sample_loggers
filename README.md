@@ -28,6 +28,7 @@ logger = logger_controller.create_logger(
 
 
 ## Update
+- 0.0.3 - Add the level definition.
 - 0.0.2post2 - Fix the bug.
 - 0.0.2post1 - Fix the bug.
 - 0.0.2 - Add the summery and throughput method.

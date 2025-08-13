@@ -77,7 +77,6 @@ def summery_model(
     logger.info(flops_content)
 
 
-@torch.no_grad()
 def throughput(
         data_loader: 'torch.utils.data.DataLoader',
         model: 'torch.nn.Module',
@@ -91,19 +90,20 @@ def throughput(
     """
     if not TORCH_THOP_AVAILABLE:
         raise ImportError("Please install the torch package to use the throughput function.")
-    model.eval()
-
-    for _, (images, _) in enumerate(data_loader):
-        images = images.cuda(non_blocking=True)
-        batch_size = images.shape[0]
-        for i in range(50):
-            model(images)
-        torch.cuda.synchronize()
-        logger.info(f"throughput averaged with 30 times")
-        tic1 = time.time()
-        for i in range(30):
-            model(images)
-        torch.cuda.synchronize()
-        tic2 = time.time()
-        logger.info(f"batch_size {batch_size} throughput {30 * batch_size / (tic2 - tic1)}")
-        return
+    with torch.no_grad():
+        model.eval()
+    
+        for _, (images, _) in enumerate(data_loader):
+            images = images.cuda(non_blocking=True)
+            batch_size = images.shape[0]
+            for i in range(50):
+                model(images)
+            torch.cuda.synchronize()
+            logger.info(f"throughput averaged with 30 times")
+            tic1 = time.time()
+            for i in range(30):
+                model(images)
+            torch.cuda.synchronize()
+            tic2 = time.time()
+            logger.info(f"batch_size {batch_size} throughput {30 * batch_size / (tic2 - tic1)}")
+            return

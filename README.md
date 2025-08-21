@@ -14,11 +14,10 @@ pip install sample_loggers
 To ues the logger directly, you can use the `logger` object provided by the package. 
 ```python
 import os
-from sample_loggers import logger
-
-# you can set the log dir and log file name through environment variables.
+# you can set the log dir and log file name through environment variables before import logger.
 os.environ["LOG_DIR"] = "./output/log"
 os.environ["LOG_FILE_NAME"] = "log.txt"
+from sample_loggers import logger
 
 logger.info("hello world")
 ```
